@@ -1,73 +1,51 @@
 <script setup>
-import { compareAsc, format, newDate } from "date-fns-jalali";
-// import {format} from 'date-fns';
-// import { faIR } from 'date-fns/locale';
-const dateNow = new Date()
+import { ref, computed, watch, onMounted } from 'vue'
+import { DateTime, Interval, Info } from "luxon";
 
-// const formattedDate = format(new Date(), 'LLLL', { locale: faIR }); // июнь
-const monthName = format(dateNow, "LLLL"),
-    yearName = format(dateNow, "yyyy"),
-    weekdays = ['شنبه', 'یک‌شنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'],
-    weekdaysShort = ['شن', 'یک‌', 'دو', 'سه‌', 'چه', 'پن', 'جم',]
-// console.log('hi')
-console.log(weekdays)
-console.log(weekdaysShort)
+const locale = 'fa-IR'
+// const locale = 'en-GB'
+const inputDate = DateTime.local({ locale }).reconfigure({ outputCalendar: "persian" });
+// const inputDate = DateTime.local({ locale })
 
 
+const weekdaysShort = Info.weekdays('narrow', { locale })
 
-let date = new Date();
-let year = date.getFullYear();
-let month = date.getMonth();
+const monthSelector = ref(0)
+const days = ref([]);
 
-// Get the first day of the month
-let dayone = new Date(year, month, 1).getDay();
 
-// Get the last date of the month
-let lastdate = new Date(year, month + 1, 0).getDate();
 
-// Get the day of the last date of the month
-let dayend = new Date(year, month, lastdate).getDay();
+const currentDate = computed(() => inputDate.plus({ month: monthSelector.value }))
+const monthName = computed(() => currentDate.value.toFormat('LLLL'))
+const yearName = computed(() => currentDate.value.toFormat('yyyy'))
 
-// Get the last date of the previous month
-let monthlastdate = new Date(year, month, 0).getDate();
+const start = computed(() => currentDate.value.startOf('month').startOf('week'))
+const end = computed(() => currentDate.value.endOf('month').endOf('week'))
 
-// Variable to store the generated calendar HTML
-const days = [];
+const range = computed(() => Interval.fromDateTimes(start.value, end.value).splitBy({ days: 1 }))
 
-// // Loop to add the last dates of the previous month
-for (let i = dayone; i > 0; i--) {
-    days.push({
-        dayNum: monthlastdate - i + 1,
-        dayClass: 'text-gray-300'
-    });
+const isToday = (date) => {
+    return date.toISODate() === DateTime.local().toISODate();
+}
+const isMonth = (date) => {
+    return date.month === currentDate.value.month;
 }
 
-// // Loop to add the dates of the current month
-for (let i = 1; i <= lastdate; i++) {
-
-    // Check if the current date is today
-    let isToday = i === date.getDate()
-        && month === new Date().getMonth()
-        && year === new Date().getFullYear()
-        ? "active"
-        : "";
-    days.push({
-        dayNum: i,
-        dayClass: isToday ? 'bg-blue-200 text-gray-50 p-1' : 'text-gray-700'
-    });
+const weekGenerator = (rangeDays) => {
+    days.value = []
+    rangeDays.forEach((day) => {
+        days.value.push({
+            dayNum: day.start.toFormat('dd'),
+            dayName: day.start.toFormat('cccc'),
+            dayClass: [isMonth(day.start) ? 'text-gray-500' : 'text-gray-300', isToday(day.start) ? 'bg-blue-400 text-gray-100 p-1' : '']
+        });
+    })
 }
+weekGenerator(range.value)
 
-// // Loop to add the first dates of the next month
-for (let i = dayend; i < 6; i++) {
-    // lit += `<li class="inactive">${i - dayend + 1}</li>`
-    days.push({
-        dayNum: i - dayend + 1,
-        dayClass: 'text-gray-300'
-    });
-}
-
-
-
+watch(range, async (newRange) => {
+    weekGenerator(newRange)
+})
 </script>
 <template>
     <div class="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t ">
@@ -76,7 +54,7 @@ for (let i = dayend; i < 6; i++) {
             }}
                 {{ yearName }}</span>
             <div class="flex items-center">
-                <button aria-label="calendar backward"
+                <button aria-label="calendar backward" @click="monthSelector++"
                     class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24"
                         height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -85,7 +63,7 @@ for (let i = dayend; i < 6; i++) {
                         <polyline points="15 6 9 12 15 18" />
                     </svg>
                 </button>
-                <button aria-label="calendar forward"
+                <button aria-label="calendar forward" @click="monthSelector--"
                     class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler  icon-tabler-chevron-right" width="24"
                         height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
@@ -97,7 +75,7 @@ for (let i = dayend; i < 6; i++) {
 
             </div>
         </div>
-        <div class="flex items-center justify-between pt-12 overflow-x-auto rtl">
+        <div class="flex items-center justify-between pt-12 overflow-x-auto">
             <div class="w-full">
                 <div class="grid grid-cols-7 gap-0">
 
@@ -107,11 +85,12 @@ for (let i = dayend; i < 6; i++) {
                 </div>
                 <div class="grid grid-cols-7 gap-0 mt-5 ">
 
-                    <span v-for="day in days" class="w-full flex justify-center py-3">
-                        <p class="text-base font-medium rounded-full" :class="day.dayClass">{{
+                    <div v-for="day in days" class="w-full flex justify-center">
+                        <div class="text-base font-medium rounded-full px-2 m-3" :class="day.dayClass">{{
                             day.dayNum
-                        }}</p>
-                    </span>
+                        }}</div>
+
+                    </div>
 
                 </div>
             </div>
