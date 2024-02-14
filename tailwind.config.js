@@ -1,11 +1,13 @@
 module.exports = {
-    purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-    darkMode: 'class', // or 'media' or 'class'
-    theme: {
-        extend: {},
+  purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  darkMode: "class", // or 'media' or 'class'
+  theme: {
+    fontFamily: {
+      sans: ["Vazirmatn", "sans-serif"],
     },
-    variants: {
-        extend: {},
-    },
-    plugins: [],
-}
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};

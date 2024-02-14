@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-
+import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue"  class="bg-gray-300 h-screen"/>
+  <HelloWorld class="bg-gray-300 h-screen" />
 </template>
 
 <style scoped>

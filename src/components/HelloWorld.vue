@@ -5,7 +5,7 @@ import Calendar from './Calendar.vue';
 
 // import Events from './Events.vue'
 
-const lngMode = ref<string>('fa')
+const lngMode = ref<string>('en')
 const dirMode = ref<string>('ltr')
 const locale = ref<string>('')
 const weekOffset = ref<WeekdayNumbers>(1)
