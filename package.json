@@ -1,13 +1,13 @@
 {
   "name": "jvue-datepicker",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . -c .eslintrc.cjs --fix --ext .ts,.js,.vue,css"
+    "dev": "vite",
+    "lint": "eslint . -c .eslintrc.cjs --fix --ext .ts,.js,.vue,css",
+    "preview": "vite preview"
   },
   "dependencies": {
     "luxon": "^3.4.4",
