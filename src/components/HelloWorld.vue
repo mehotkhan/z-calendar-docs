@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
-import { DateTime, Interval, Info } from "luxon";
-import Calendar from './Calendar.vue'
+import { DateTime, Settings, WeekdayNumbers } from "luxon";
+import { ref } from 'vue';
+import Calendar from './Calendar.vue';
+
 // import Events from './Events.vue'
 
-const lngMode = ref<string>('en')
+const lngMode = ref<string>('fa')
 const dirMode = ref<string>('ltr')
 const locale = ref<string>('')
+const weekOffset = ref<WeekdayNumbers>(1)
 const inputDate = ref<object>()
 
 const switchMode = () => {
@@ -18,10 +20,14 @@ const bootUp = () => {
   if (lngMode.value == 'fa') {
     locale.value = 'fa-IR'
     dirMode.value = 'rtl'
-    inputDate.value = DateTime.local().reconfigure({ outputCalendar: "persian" });
+    weekOffset.value = 6
+    Settings.defaultWeekSettings = { firstDay: weekOffset.value, minimalDays: 1, weekend: [4, 5] }
+    inputDate.value = DateTime.local().reconfigure({ outputCalendar: "persian" })
   } else {
     dirMode.value = 'ltr'
     locale.value = 'en-GB'
+    weekOffset.value = 1
+    Settings.defaultWeekSettings = { firstDay: weekOffset.value, minimalDays: 1, weekend: [6, 7] }
     inputDate.value = DateTime.local()
   }
 }
@@ -39,7 +45,7 @@ bootUp()
         {{ lngMode }}</button>
     </div>
     <div class="max-w-xl w-full shadow-lg">
-      <Calendar :locale="locale" :inputDate="inputDate" :dir="dirMode" />
+      <Calendar :locale="locale" :inputDate="inputDate" :dir="dirMode" :weekOffset="weekOffset" />
     </div>
   </div>
 </template>
