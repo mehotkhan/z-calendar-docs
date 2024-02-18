@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
 import { DateTime, Interval, Info } from "luxon";
+import "../assets/style.css";
 
 const props = defineProps({
   locale: String,
