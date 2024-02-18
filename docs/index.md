@@ -4,15 +4,15 @@ layout: home
 
 hero:
   name: "ZCalendar"
-  text: "Vue3 Luxon Calendar"
-  tagline: My great project tagline
+  text: "Vue Calendar"
+  tagline: Vue3 Luxon Calendar
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Introduction
+      link: /intro/index
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Install
+      link: /intro/install
 
 features:
   - title: Feature A
@@ -22,4 +22,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
