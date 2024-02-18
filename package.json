@@ -5,13 +5,12 @@
   "type": "module",
   "scripts": {
     "build": "vue-tsc && vite build",
-    "dev": "vite",
-    "lint": "eslint . -c .eslintrc.cjs --fix --ext .ts,.js,.vue,css",
-    "preview": "vite preview",
     "clean": "rm -rf  dist ",
-    "docs:dev": "vitepress dev docs",
+    "dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "lint": "eslint . -c .eslintrc.cjs --fix --ext .ts,.js,.vue,css",
+    "preview": "vite preview"
   },
   "dependencies": {
     "luxon": "^3.4.4",
