@@ -1,29 +1,7 @@
+const process = require('node:process')
+
+process.env.ESLINT_TSCONFIG = 'tsconfig.json'
+
 module.exports = {
-  root: true,
-  plugins: [
-    "css"
-  ],
-  env: {
-    node: true,
-    browser: true
-  },
-  extends: [
-    "plugin:vue/recommended",
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:css/recommended"
-  ],
-  rules: {
-    "prettier/prettier": "error",
-    "vue/component-name-in-template-casing": ["error", "PascalCase"],
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
-  },
-  globals: {
-    $nuxt: true
-  },
-  parserOptions: {
-    parser: "@babel/eslint-parser",
-    requireConfigFile: false
-  }
-};
+  extends: '@antfu',
+}
