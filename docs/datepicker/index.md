@@ -2,13 +2,13 @@
 outline: deep
 ---
 
-<script setup>
+<!-- <script setup>
   
-import ZDatePicker from '../../src/ZDatePicker.vue';
+// import ZDatePicker from '../../src/ZDatePicker.vue';
 
 </script>
 
-# DatePicker
+# DatePicker -->
 
 
-<ZDatePicker />
+<!-- <ZDatePicker /> -->

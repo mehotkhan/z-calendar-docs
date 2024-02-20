@@ -60,7 +60,7 @@ const daySelected = (day: any) => {
       </div>
       <div>
         <div>output</div>
-        <div>{{ inputDateModel }}</div>
+        <div class="p-3">{{ inputDateModel }}</div>
       </div>
     </div>
   </div>

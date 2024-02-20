@@ -1,23 +1,45 @@
 import { defineConfig } from "vitepress";
+import { version } from "../../package.json";
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "ZCalendar",
-  description: "Vue3 Luxon Calendar",
+  title: "Z Calendar",
+  lastUpdated: true,
+  description: "Components, composables and configurations for Vue 3",
   base: "/zcalendar/",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Docs", link: "/intro/index" },
+      { text: "Get Started", link: "/installation" },
+      { text: "Demo", link: "/demo" },
+      {
+        text: version,
+        items: [
+          {
+            text: "Changelog",
+            link: "https://github.com/mehotkhan/zcalendar/releases",
+          },
+        ],
+      },
     ],
-
+    search: {
+      provider: "local",
+    },
+    editLink: {
+      pattern: "https://github.com/mehotkhan/zcalendar/edit/master/docs/:path",
+    },
+    socialLinks: [
+      { icon: "github", link: "https://github.com/mehotkhan/zcalendar" },
+    ],
+    footer: {
+      message: "Released under the MIT License.",
+      copyright: `Copyright © ${new Date().getFullYear()} Ali Zemani`,
+    },
     sidebar: [
       {
-        text: "Intro",
+        text: "Get Started",
         items: [
-          { text: "Intro", link: "/intro/index" },
-          { text: "Install", link: "/intro/install" },
+          { text: "Installation", link: "/installation" },
+          { text: "Demo", link: "/demo" },
         ],
       },
       {
@@ -29,23 +51,20 @@ export default defineConfig({
         items: [{ text: "Intro", link: "/calendar/index" }],
       },
       {
-        text: "Config",
-        items: [{ text: "Intro", link: "/config/index" }],
+        text: "Customization",
+        items: [
+          { text: "Theming options", link: "/theming-options" },
+          { text: "Props", link: "/props" },
+          { text: "Events", link: "/events" },
+          { text: "Advanced Features", link: "/advanced-features" },
+        ],
       },
     ],
-
-    socialLinks: [{ icon: "github", link: "https://github.com/mehotkhan/zcalendar" }],
   },
-  // locales: {
-  //   root: {
-  //     label: 'English',
-  //     lang: 'en'
-  //   },
-  //   fr: {
-  //     label: 'Persian',
-  //     lang: 'fa', // optional, will be added  as `lang` attribute on `html` tag
-  //     link: '/fa/guide/' // default /fr/ -- shows on navbar translations menu, can be external
-
-  //   }
-  // }
+  vite: {
+    optimizeDeps: {
+      include: ["@headlessui/vue", "luxon"],
+      exclude: [],
+    },
+  },
 });
