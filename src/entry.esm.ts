@@ -1,6 +1,6 @@
 // Import vue component
 import type { App } from 'vue'
-import component from './ZCalendar.vue'
+import component from './ZDatePicker.vue'
 
 // Default export is installable instance of component.
 // IIFE injects install function into component, allowing component
@@ -11,7 +11,7 @@ export default /* #__PURE__ */ (() => {
 
   // Attach install function executed by Vue.use()
   installable.install = (app: App) => {
-    app.component('ZCalendar', installable)
+    app.component('ZDatePicker', installable)
   }
   return installable
 })()
