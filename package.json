@@ -1,5 +1,5 @@
 {
-  "name": "z-calendar",
+  "name": "@mehotkhan/zcalendar",
   "type": "module",
   "version": "1.0.2",
   "description": "Calendar Components for Vue.js 3 using Tailwind CSS and Luxon",
@@ -23,13 +23,13 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/z-calendar.js",
-      "require": "./dist/z-calendar.umd.cjs",
+      "import": "./dist/zcalendar.js",
+      "require": "./dist/zcalendar.umd.cjs",
       "types": "./dist/types.d.ts"
     }
   },
-  "main": "./dist/z-calendar.umd.cjs",
-  "module": "./dist/z-calendar.js",
+  "main": "./dist/zcalendar.umd.cjs",
+  "module": "./dist/zcalendar.js",
   "types": "./dist/types.d.ts",
   "files": [
     "dist"

@@ -10,7 +10,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/entry.ts"),
       name: "ZCalendar",
-      fileName: "z-calendar",
+      fileName: "zcalendar",
     },
     rollupOptions: {
       external: ["vue"],
