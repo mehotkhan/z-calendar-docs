@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import ZCalendar from "./ZCalendar.vue";
+import ZDatePicker from "./ZDatePicker.vue";
 
 const dateValue = ref({
   startDate: "",
@@ -10,9 +10,7 @@ const dateValue = ref({
 const currentLocale = ref("en");
 
 const switchMode = () => {
-  currentLocale.value == "fa"
-    ? (currentLocale.value = "en")
-    : (currentLocale.value = "fa");
+  currentLocale.value == "fa" ? (currentLocale.value = "en") : (currentLocale.value = "fa");
 };
 </script>
 
@@ -27,7 +25,7 @@ const switchMode = () => {
     <br />
     <br />
     <div class="grid grid-rows-2 gap-4" :key="currentLocale">
-      <ZCalendar :i18n="currentLocale" v-model="dateValue.startDate" />
+      <ZDatePicker :i18n="currentLocale" v-model="dateValue.startDate" />
     </div>
   </div>
 </template>
