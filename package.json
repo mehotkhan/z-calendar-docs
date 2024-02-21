@@ -1,7 +1,7 @@
 {
   "name": "@mehotkhan/zcalendar",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Calendar Components for Vue.js 3 using Tailwind CSS and Luxon",
   "author": {
     "name": "ali Zemani",
