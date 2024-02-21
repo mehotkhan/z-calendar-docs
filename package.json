@@ -1,7 +1,7 @@
 {
   "name": "z-calendar",
   "type": "module",
-  "version": "0.5",
+  "version": "1.0.1",
   "description": "Calendar Components for Vue.js 3 using Tailwind CSS and Luxon",
   "author": {
     "name": "ali Zemani",
