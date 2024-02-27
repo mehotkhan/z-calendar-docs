@@ -1,7 +1,7 @@
 {
   "name": "@mehotkhan/zcalendar",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "Calendar Components for Vue.js 3 using Tailwind CSS and Luxon",
   "author": {
     "name": "ali Zemani",
@@ -182,13 +182,13 @@
     "@tailwindcss/forms": "^0.5.7",
     "@types/fs-extra": "^11.0.4",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.20",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.17",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "esbuild": "^0.20.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "fs-extra": "^11.2.0",
     "husky": "^9.0.11",
     "luxon": "^3.4.4",
@@ -200,7 +200,7 @@
     "vite": "^5.1.4",
     "vite-plugin-dts": "3.7.3",
     "vitepress": "1.0.0-rc.44",
-    "vue": "^3.4.19",
+    "vue": "^3.4.20",
     "vue-tsc": "^1.8.27"
   },
   "config": {
